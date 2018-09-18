@@ -2,10 +2,9 @@ class Sorter {
   constructor() {
     // your implementation
    this.MyArray = [];
-      
+   this.mycomp = function (left, right) { return  left - right}; 
+   
   }
-
-
 
   add(element) {
     // your implementation
@@ -29,34 +28,28 @@ class Sorter {
 
   sort(indices) {
     // your implementation
-    function comparator(a, b) {
-      if (a < b ) {
-        return -1;
-      }
-      if (a > b ) {
-        return 1;
-      }
-        return 0;
-    }
-indices.sort(comparator);
-testArray = [];
-for (i=0;i<=indices.length;i++) {
-testArray[i] = this.MyArray[indices[i]];
-}
-testArray.sort(comparator);
-for (i=0;i<=indices.length;i++) {
+  let testArray = [];    
+    if (indices.length>0) {
+    
+  for (let i=0;i<indices.length;i++) {
+  testArray[i] = this.MyArray[indices[i]];
+}  
+indices.sort((left, right) => left-right);
+testArray.sort(this.mycomp);
+for (let i=0;i<indices.length;i++) {
   this.MyArray[indices[i]]=testArray[i];
   }
+}
   return this.MyArray;
 
-    //for (i=this.MyArray.length;i>=0;i--) {
-
+    
 }
 
-  }
+  
 
   setComparator(compareFunction) {
     // your implementation
+    this.mycomp = compareFunction;
   }
 }
 
